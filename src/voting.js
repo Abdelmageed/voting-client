@@ -11,7 +11,7 @@ class Voting extends Component{
     return (
       <div className="voting">
         {this.props.winner?
-          <Winner winner={this.props.winner}/>: 
+          <Winner ref="winner" winner={this.props.winner}/>: 
           <Vote {...this.props} />
         }
         

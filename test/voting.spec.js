@@ -35,4 +35,44 @@ describe('Voting', ()=> {
     
     expect(votedWith).to.equal('Trainspotting');
   });
+  
+  it('should disable the buttons on vote', ()=> {
+    const component = renderIntoDocument(
+      <Voting 
+      pair={['Trainspotting', '28 Days Later']}
+      hasVoted="Trainspotting"
+      />
+    );
+    
+    const buttons = scry(component, 'button');
+    expect(buttons[0].hasAttribute('disabled')).to.equal.true;
+    expect(buttons[1].hasAttribute('disabled')).to.equal.true;
+  });
+  
+  it('should show voted label on voted entry', ()=> {
+     const component = renderIntoDocument(
+      <Voting 
+      pair={['Trainspotting', '28 Days Later']}
+      hasVoted="Trainspotting"
+      />
+    );
+    
+    const buttons = scry(component, 'button');
+    expect(buttons[0].textContent).to.contain('voted');
+  });
+  
+  it('should only show the winner with no buttons when a winner is given', ()=> {
+     const component = renderIntoDocument(
+      <Voting 
+       winner="Trainspotting"
+      />
+    );
+    
+    const buttons = scry(component, 'button');
+    expect(buttons.length).to.equal(0);
+    
+    const winner = ReactDOM.findDOMNode(component.refs.winner)
+    expect(winner).to.be.ok;
+    expect(winner.textContent).to.contain('Trainspotting');
+  })
 })

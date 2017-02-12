@@ -60,7 +60,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/testHelper.js",
-    "test:watch": "test -- --watch"
+    "test:watch": "npm test -- --watch"
   },
   "jest": {
     "collectCoverageFrom": [

@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 
-import Winner from './winner';
-import Tally from './tally';
+import Winner from './Winner';
+import Tally from './Tally';
 
 class Results extends PureComponent{
   

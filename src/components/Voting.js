@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 
-import Winner from './winner';
-import Vote from './vote';
+import Winner from './Winner';
+import Vote from './Vote';
 
 class Voting extends PureComponent{
  

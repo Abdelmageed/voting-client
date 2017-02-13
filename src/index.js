@@ -7,18 +7,16 @@ import {Provider} from 'react-redux';
 import {Router, Route, hashHistory} from 'react-router';
 import {createStore} from 'redux';
 import reducer from './reducer';
+import io from 'socket.io-client';
 import './index.css';
 
+
+
 const store = createStore(reducer);
-store.dispatch({
-  type: 'SET_STATE',
-  state: {
-    vote: {
-      pair: ['Trainspotting', 'Sunshine'],
-      tally: {'Trainspotting': 1}
-    }
-  }
-})
+const socket = io(`${location.protocol}//${location.hostname}:8001`);
+socket.on('state', state=>{
+  store.dispatch({type:'SET_STATE', state})
+});
 const routes = 
 <Route component={App}>
   <Route path="/" component={VotingContainer} />

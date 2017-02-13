@@ -71,5 +71,60 @@ describe('Reducer', ()=> {
       });
     
     expect(reducer(state, action)).to.equal(expectedNextState);
+  });
+  
+  it('handles VOTE by setting hasVoted', ()=> {
+    const state = Map({
+      vote: Map({
+        pair: List.of('Trainspotting', 'Sunshine')
+      })
+    });
+    const action = {type: 'VOTE', entry: 'Trainspotting'};
+    const expectedNextState = Map({
+      vote: Map({
+        pair: List.of('Trainspotting', 'Sunshine'),
+      }),
+      hasVoted: 'Trainspotting'
+    });
+    
+    expect(reducer(state, action)).to.equal(expectedNextState);
+  });
+  
+  it('does not set hasVoted when VOTE is called with an invalid entry', ()=> {
+    const state = Map({
+      vote: Map({
+        pair: List.of('Trainspotting', 'Sunshine')
+      })
+    });
+    const action = {type: 'VOTE', entry: '28 Days Later'};
+    const expectedNextState = Map({
+      vote: Map({
+        pair: List.of('Trainspotting', 'Sunshine'),
+      }),
+    });
+    
+    expect(reducer(state, action)).to.equal(expectedNextState);
+  });
+  
+  it('removes hasVoted on SET_STATE if pair changes', ()=> {
+    const state = Map({
+      vote: Map({
+        pair: List.of('Trainspotting', '28 Days Later')
+      }),
+      hasVoted: 'Trainspotting'
+    });
+    const action = {type: 'SET_STATE',
+      state: Map({
+        vote: Map({
+          pair: List.of('Shallow Grave', 'Sunshine')
+      })
+    })};
+    const expectedNextState = Map({
+        vote: Map({
+          pair: List.of('Shallow Grave', 'Sunshine')
+      })
+    });
+    
+    expect(reducer(state, action)).to.equal(expectedNextState);
   })
 });

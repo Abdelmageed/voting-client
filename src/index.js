@@ -6,6 +6,7 @@ import {ResultsContainer} from './components/Results';
 import {Provider} from 'react-redux';
 import {Router, Route, hashHistory} from 'react-router';
 import {createStore} from 'redux';
+import {setState} from './actions';
 import reducer from './reducer';
 import io from 'socket.io-client';
 import './index.css';
@@ -15,7 +16,7 @@ import './index.css';
 const store = createStore(reducer);
 const socket = io(`${location.protocol}//${location.hostname}:8001`);
 socket.on('state', state=>{
-  store.dispatch({type:'SET_STATE', state})
+  store.dispatch(setState(state))
 });
 const routes = 
 <Route component={App}>

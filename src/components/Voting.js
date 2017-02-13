@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import * as actions from '../actions';
 
 import Winner from './Winner';
 import Vote from './Vote';
@@ -27,4 +28,4 @@ function mapStateToProps (state) {
   };
 }
 
-export const VotingContainer = connect(mapStateToProps)(Voting);
+export const VotingContainer = connect(mapStateToProps, actions)(Voting);

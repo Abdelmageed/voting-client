@@ -9,9 +9,10 @@ const reducer = (state = Map(), action)=> {
   switch(action.type){
     case 'SET_STATE':
       return setState(state, action);
+    default:
+      return state;
   }
   
-  return state;
 }
 
 export default reducer;

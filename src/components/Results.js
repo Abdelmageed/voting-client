@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
+import * as actions from '../actions';
 
 import Winner from './Winner';
 import Tally from './Tally';
@@ -23,4 +24,4 @@ function mapStateToProps(state){
   }
 }
 
-export const ResultsContainer = connect(mapStateToProps)(Results);
+export const ResultsContainer = connect(mapStateToProps, actions)(Results);
